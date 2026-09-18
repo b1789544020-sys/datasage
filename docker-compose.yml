@@ -1,0 +1,38 @@
+# DataSage 一键本地编排：docker compose up 后访问 http://localhost:5173
+# 默认全程离线（mock LLM），不需要任何 API Key。
+# 接真实 DeepSeek：在仓库根目录创建 .env（参考 backend/.env.example 的键名），
+# 写入 DATASAGE_LLM_PROVIDER=openai 与 LLM_API_KEY=sk-...，再重新 up。
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: DataSage
+      DEBUG: "false"
+      # 默认 mock，不依赖真实 API；接真实模型时由宿主 .env 覆盖
+      DATASAGE_LLM_PROVIDER: ${DATASAGE_LLM_PROVIDER:-mock}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.deepseek.com/v1}
+      LLM_MODEL: ${LLM_MODEL:-deepseek-chat}
+      # 反幻觉演示开关：true 时 mock 初稿会刻意编造数字并被自动拦截修复
+      DATASAGE_DEMO_HALLUCINATION: ${DATASAGE_DEMO_HALLUCINATION:-false}
+      DATABASE_URL: sqlite+aiosqlite:///./data/datasage.db
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      # 容器网络内把 Vite 的 /api、/health 代理到后端容器
+      VITE_PROXY_TARGET: http://backend:8000
+    depends_on:
+      - backend
+
+volumes:
+  backend-data:
+  backend-uploads:
+

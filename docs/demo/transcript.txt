@@ -1,0 +1,33 @@
+$ python scripts/demo_anti_hallucination.py
+DataSage 反幻觉端到端演示 · 全程离线（mock provider，无需 API Key）
+
+[1/5] 上传数据 demo_sales.csv（6 行 × 5 列）
+  schema: date: datetime | region: categorical | product: categorical | sales_amount: numeric | quan
+  tity: numeric
+
+[2/5] 自然语言提问
+  各地区销售额汇总，总销售额是多少？哪个地区最高？
+  LLM 生成 pandas 代码 -> 受限沙箱执行 -> 三层结果验证（全部通过）
+
+[3/5] 沙箱真实执行结果（数字回溯唯一的证据来源，模型拿不到全量数据）
+        region          sales_amount
+        华北              2450
+        华东              2040
+        华南              1390
+        西南              640
+
+[4/5] LLM 写出第一版答案（演示模式：模型在数字上'自由发挥'了一次）
+      经统计，全年总销售额约为 8932 元，同比增长 46%，其中华北销售额最高。
+      [!] 数字回溯拦截：8932 元、46% 在真实结果中找不到任何证据（单元格 / 行列数 / 求和 / 均值 / 百
+      分比与倍数候选全部比对过，均不匹配），判定为幻觉，自动触发重生成。
+
+[5/5] 系统自动把幻觉证据喂回 LLM 重新生成（第 1 轮）
+      修复 prompt：以下数字无法溯源……只能引用真实数据，不要编造任何数据里没有的数字。
+
+[OK] 最终答案（每个数字都能回溯到沙箱结果）
+      共有4个分组。排名第一是华北（sales_amount 2450）。
+      排名第二是华东（sales_amount 2040）。
+      [OK] 5/5 个数字全部找到证据 · verified=True · hallucination_count=0
+
+浏览器中：红色高亮=幻觉数字（'答案生成'步骤保留被丢弃的初稿），绿色下划线=可溯源数字，点击可看行列证
+据。

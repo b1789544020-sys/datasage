@@ -1,0 +1,7 @@
+# 开发 / 演示可选依赖（运行主程序与 pytest 不需要安装本文件）
+#
+# 用途：scripts/demo_anti_hallucination.py 用 Pillow 把反幻觉演示
+# 逐帧绘制成 GIF（docs/demo/anti-hallucination.gif）。
+# 未安装时演示脚本仍可正常运行，仅自动跳过 GIF 录制（终端照常有色输出）。
+-r requirements.txt
+Pillow>=10.0.0
