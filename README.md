@@ -6,6 +6,8 @@
 >
 > 🔑 **零 API Key、全程离线可演示**：内置 mock LLM，`docker compose up` 即用。
 
+**[观看 Web UI 视频 / 截图演示](docs/demo.md)**：真实浏览器操作，展示幻觉初稿被数字回溯拦截、自动重写及证据下钻（离线 mock 模式）。
+
 ## 反幻觉演示（离线 mock，无需 Key）
 
 ![DataSage 反幻觉演示：幻觉初稿被数字回溯拦截并自动重写](docs/demo/anti-hallucination.gif)
