@@ -6,7 +6,15 @@
 >
 > 🔑 **零 API Key、全程离线可演示**：内置 mock LLM，`docker compose up` 即用。
 
-**[观看 Web UI 视频 / 截图演示](docs/demo.md)**：真实浏览器操作，展示幻觉初稿被数字回溯拦截、自动重写及证据下钻（离线 mock 模式）。
+## 🎬 视频演示
+
+**[观看 2 分 51 秒中文精简版](DataSage-demo-highlights.mp4)** · **[观看 6 分 28 秒完整版](DataSage-demo-full.mp4)** · [图文验证记录](docs/demo.md)
+
+![DataSage 完整演示预览](docs/demo/web/DataSage-demo-full-preview.gif)
+
+两版均来自真实本地 Web UI 操作，包含中文旁白与字幕，使用明确标注的离线 mock 模式。内容覆盖 CSV 上传、沙箱执行、三层验证、幻觉数字拦截重写、单元格证据、图表导出和关联追问；精简版只删减重复停留，没有整片加速。
+
+[精简版字幕](docs/demo/web/DataSage-demo-highlights.srt) · [完整版字幕](docs/demo/web/DataSage-demo-full.srt)
 
 ## 反幻觉演示（离线 mock，无需 Key）
 

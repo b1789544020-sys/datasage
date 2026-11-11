@@ -2,15 +2,16 @@
 
 > 本页录像来自真实本地 Web UI 操作。使用 mock provider 和 `DATASAGE_DEMO_HALLUCINATION=true` 确定性触发反幻觉链路，**不调用上游模型 API**；pandas 沙箱执行、结果验证、答案重写、持久化和证据定位均走真实应用代码。
 
-## 视频
+## 新版中文录像
 
-<video controls playsinline preload="metadata" poster="demo/web/03-hallucination-rewrite.png" src="demo/web/DataSage-demo.mp4" width="100%"></video>
+- **[2 分 51 秒中文精简版](../DataSage-demo-highlights.mp4)** · [独立字幕](demo/web/DataSage-demo-highlights.srt)
+- **[6 分 28 秒完整版](../DataSage-demo-full.mp4)** · [独立字幕](demo/web/DataSage-demo-full.srt)
 
-**[直接打开 / 下载 MP4](demo/web/DataSage-demo.mp4)** · [项目源码](../README.md) · [终端版演示 GIF](demo/anti-hallucination.gif)
+新版两版来自同一次真实完整录制，使用 48 行 CSV 示例，覆盖三层验证、故意注入无依据数字后的拦截重写、单元格证据、图表导出和关联追问。精简版仅删减重复停留，没有整片加速。
 
-录像流程：加载 `sample_sales.csv` → 输入自然语言问题 → 查看真实沙箱结果 → 对比红色幻觉初稿与绿色最终答案 → 点击数字 `300` 打开证据抽屉。
+![新版完整演示预览](demo/web/DataSage-demo-full-preview.gif)
 
-## 这次运行实际发生了什么
+## 早期图文验证记录
 
 示例数据共 **6 行、5 列**。问题为：
 
