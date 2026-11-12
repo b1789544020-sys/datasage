@@ -26,3 +26,7 @@ dist-ssr/
 .idea/
 .DS_Store
 Thumbs.db
+
+# ---- Local demo production workspace ----
+DataSage-Demo-Production/
+Demo视频是怎么做出来的？.txt
